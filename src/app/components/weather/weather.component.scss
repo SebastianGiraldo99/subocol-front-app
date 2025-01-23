@@ -1,0 +1,46 @@
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+.weather-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f8f9fa; 
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    background-color: #007bff; 
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 12px;
+  }
+
+  &__cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  &__row:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+
+  &__row:hover {
+    background-color: #d4eaff;
+    transition: background 0.3s ease-in-out;
+  }
+
+  &__row--header {
+    background-color: #0056b3;
+  }
+}
+
+.button-group__button {
+  margin-right: 10px; 
+}

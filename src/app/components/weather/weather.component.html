@@ -1,0 +1,101 @@
+<mat-stepper orientation="vertical" linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Seleccione las ciudades</ng-template>
+        <mat-form-field>
+          <mat-label>Ciudades</mat-label>
+          <mat-select [formControl]="cities" multiple>
+           @for (city of defaultCities; track $index) {
+            <mat-option [value]="city">{{city}}</mat-option>
+           }
+        </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Escriba la unidad de medida.</ng-template>
+        <mat-form-field>
+          <mat-label>Unidad de medida</mat-label>
+          <mat-select [formControl]="unitsFormCtrl">
+            @for (units of units; track $index) {
+             <mat-option [value]="units.value">{{units.name}}</mat-option>
+            }
+         </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext (click)="validate()">SIguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Completado</ng-template>
+      <p>Formulario completado.</p>
+      <div>
+        <button mat-button matStepperPrevious>Atras</button>
+        <button mat-button (click)="reset()">Reset</button>
+        <button mat-button (click)="searchWeather()" [disabled]="disabledButton">Buscar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+  @if(weather.length > 0){
+    <table mat-table [dataSource]="weather" class="mat-elevation-z8 weather-table">
+      <!-- Nombre Ciudad -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Nombre Ciudad</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.location.name}}</td>
+      </ng-container>
+    
+      <!-- Nombre País -->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Nombre País</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.location.country}}</td>
+      </ng-container>
+    
+      <!-- Latitud -->
+      <ng-container matColumnDef="lat">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Latitud</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.location.lat}}</td>
+      </ng-container>
+    
+      <!-- Longitud -->
+      <ng-container matColumnDef="long">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Longitud</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.location.lon}}</td>
+      </ng-container>
+    
+      <!-- Hora de Observación -->
+      <ng-container matColumnDef="observation_time">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Hora de observación</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.current.observation_time}}</td>
+      </ng-container>
+    
+      <!-- Temperatura -->
+      <ng-container matColumnDef="temperature">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Temperatura C°</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">{{element.current.temperature}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="weather-table__header">Acciones</th>
+        <td mat-cell *matCellDef="let element" class="weather-table__cell">
+          <button mat-fab class="button-group__button" (click)="removeItem(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-fab class="button-group__button" (click)="openModal(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="weather-table__row weather-table__row--header"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="weather-table__row"></tr>
+    </table>    
+  }
+
+

@@ -1,0 +1,68 @@
+
+<div class="form__container">
+    <form [formGroup]="formLocation" (ngSubmit)="onSubmit()" class="form">
+  
+      <!-- Nombre -->
+      <div class="form__field">
+        <label class="form__label" for="name">Nombre</label>
+        <input matInput formControlName="name" id="name" class="form__input" required>
+        <mat-error *ngIf="formLocation.get('name')?.hasError('required')" class="form__error">
+          El nombre es obligatorio.
+        </mat-error>
+      </div>
+  
+      <!-- País -->
+      <div class="form__field">
+        <label class="form__label" for="country">País</label>
+        <input matInput formControlName="country" id="country" class="form__input" required>
+        <mat-error *ngIf="formLocation.get('country')?.hasError('required')" class="form__error">
+          El país es obligatorio.
+        </mat-error>
+      </div>
+  
+      <!-- Región -->
+      <div class="form__field">
+        <label class="form__label" for="country">Región</label>
+            <input matInput formControlName="region" class="form__input">
+      </div>
+  
+      <div class="form__field">
+        <label class="form__label" for="lat">Latitud</label>
+        <input matInput formControlName="lat" id="lat" type="number" class="form__input">
+      </div>
+      
+      <div class="form__field">
+        <label class="form__label" for="lon">Longitud</label>
+        <input matInput formControlName="lon" id="lon" type="number" class="form__input">
+      </div>
+      
+      <div class="form__field">
+        <label class="form__label" for="timezone_id">Timezone ID</label>
+        <input matInput formControlName="timezone_id" id="timezone_id" class="form__input">
+      </div>
+      
+      <div class="form__field">
+        <label class="form__label" for="localtime">Hora Local</label>
+        <input matInput formControlName="localtime" id="localtime" type="datetime-local" class="form__input">
+      </div>
+      
+      <div class="form__field">
+        <label class="form__label" for="localtime_epoch">Epoch Local Time</label>
+        <input matInput formControlName="localtime_epoch" id="localtime_epoch" type="number" class="form__input">
+      </div>
+      
+      <div class="form__field">
+        <label class="form__label" for="utc_offset">Offset UTC</label>
+        <input matInput formControlName="utc_offset" id="utc_offset" class="form__input">
+      </div>
+  
+      <!-- Botón de enviar -->
+      <div class="form__button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="formLocation.invalid" class="form__button">
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+
+<button mat-button (click)="closeDialog()">Cerrar</button>

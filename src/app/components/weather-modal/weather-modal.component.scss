@@ -1,0 +1,85 @@
+h1 {
+    color: #3f51b5;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  // Contenedor del formulario
+.form__container {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Formulario principal
+  .form {
+    &__field {
+      display: block;
+      margin-bottom: 2px;
+    }
+  
+    &__label {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+    }
+  
+    &__input {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-sizing: border-box;
+  
+      &:focus {
+        border-color: #3f51b5;
+        outline: none;
+      }
+    }
+  
+    &__error {
+      color: red;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  
+    &__button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+  
+      &:disabled {
+        background-color: #ccc;
+      }
+  
+      &:hover {
+        background-color: #303f9f;
+      }
+    }
+  }
+  
+  // Estilos para el botón de envío
+  .form__button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  // Modificador para formularios con estado inválido
+  .form--invalid {
+    &__input {
+      border-color: #e57373;
+    }
+  }
+  
